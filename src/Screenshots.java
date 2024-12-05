@@ -37,7 +37,6 @@ public class Screenshots {
 		saveScreenshot(elementScreenshot, "element_screenshot.png");
 
 		// viewport
-//		driver.findElement(By.name("my-date")).click();
 		var largeColumn = driver.findElement(By.className("large-2")).getRect();
 		String viewportScreenshot = browsingContext.captureBoxScreenshot(
 				largeColumn.getX() - 30,
@@ -60,5 +59,4 @@ public class Screenshots {
 			e.printStackTrace();
    }
  }
-
 }
