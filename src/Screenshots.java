@@ -13,7 +13,7 @@ import org.openqa.selenium.remote.RemoteWebElement;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
-public class Screenshots { 
+public class Screenshots {
 
 	static protected WebDriver driver;
 
@@ -38,12 +38,8 @@ public class Screenshots {
 
 		// viewport
 		var largeColumn = driver.findElement(By.className("large-2")).getRect();
-		String viewportScreenshot = browsingContext.captureBoxScreenshot(
-				largeColumn.getX() - 30,
-				largeColumn.getY() - 30,
-				largeColumn.getWidth() + 30,
-				largeColumn.getHeight() + 30
-				);
+		String viewportScreenshot = browsingContext.captureBoxScreenshot(largeColumn.getX() - 30,
+				largeColumn.getY() - 30, largeColumn.getWidth() + 30, largeColumn.getHeight() + 30);
 
 		saveScreenshot(viewportScreenshot, "viewport_screenshot.png");
 
@@ -57,6 +53,6 @@ public class Screenshots {
 			Files.write(Paths.get(path + filename), decodedScreenshot);
 		} catch (IOException e) {
 			e.printStackTrace();
-   }
- }
+		}
+	}
 }
