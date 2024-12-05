@@ -13,7 +13,7 @@ import org.openqa.selenium.remote.RemoteWebElement;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 
-public class Screenshots {
+public class Screenshots { 
 
 	static protected WebDriver driver;
 
@@ -23,7 +23,7 @@ public class Screenshots {
 		options.enableBiDi();
 		WebDriver driver = new ChromeDriver(options);
 
-		driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+		driver.get("https://the-internet.herokuapp.com/challenging_dom");
 		var browsingContext = new BrowsingContext(driver, driver.getWindowHandle());
 
 		// full page
@@ -31,19 +31,20 @@ public class Screenshots {
 		saveScreenshot(fullScreenshot, "full_screenshot.png");
 
 		// element
-		WebElement colorPicker = driver.findElement(By.name("my-colors"));
-		String internalElementId = ((RemoteWebElement) colorPicker).getId();
+		WebElement canvas = driver.findElement(By.cssSelector("#canvas"));
+		String internalElementId = ((RemoteWebElement) canvas).getId();
 		String elementScreenshot = browsingContext.captureElementScreenshot(internalElementId);
 		saveScreenshot(elementScreenshot, "element_screenshot.png");
 
 		// viewport
-		driver.findElement(By.name("my-date")).click();
-		var datePicker = driver.findElement(By.className("datepicker")).getRect();
+//		driver.findElement(By.name("my-date")).click();
+		var largeColumn = driver.findElement(By.className("large-2")).getRect();
 		String viewportScreenshot = browsingContext.captureBoxScreenshot(
-				datePicker.getX(),
-				datePicker.getY(),
-				datePicker.getWidth(),
-				datePicker.getHeight());
+				largeColumn.getX() - 30,
+				largeColumn.getY() - 30,
+				largeColumn.getWidth() + 30,
+				largeColumn.getHeight() + 30
+				);
 
 		saveScreenshot(viewportScreenshot, "viewport_screenshot.png");
 
